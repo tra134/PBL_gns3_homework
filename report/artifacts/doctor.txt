@@ -1,0 +1,19 @@
+[PASS] GNS3 API: http://127.0.0.1:3080/v3 (v3)
+[PASS] GNS3 server: {'controller_host': '127.0.0.1', 'version': '3.0.6', 'local': True}
+[PASS] Template VPCS
+[PASS] Template Ethernet switch
+[PASS] Compute 'local' hỗ trợ node type 'docker'
+[PASS] Compute 'local' hỗ trợ node type 'vpcs'
+[PASS] Compute 'local' hỗ trợ node type 'ethernet_switch'
+[INFO] Router dùng FRR trong Docker — không cần image Cisco IOSv.
+
+--- Kiểm tra binary trên máy chạy GNS3 (bỏ qua nếu server ở xa) ---
+[PASS] VPCS: /home/traphan/.local/bin/vpcs version 0.8.5
+[PASS] Dynamips: /home/traphan/.local/bin/dynamips
+[PASS] ubridge: /home/traphan/.local/bin/ubridge (ep)
+[PASS] busybox tĩnh: /home/traphan/.local/bin/busybox-static
+[PASS] docker CLI: /usr/bin/docker
+[PASS] Docker image frrouting/frr:latest đã có sẵn
+[PASS] Docker image alpine:3.20 đã có sẵn
+
+Kết quả: sẵn sàng chạy ./setup.sh

@@ -1,0 +1,39 @@
+### show ip route
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+C>* 10.0.12.0/30 is directly connected, eth1, 00:30:27
+R>* 10.0.23.0/24 [120/2] via 10.0.12.2, eth1, weight 1, 00:30:23
+R>* 10.0.34.0/24 [120/2] via 10.0.41.1, eth2, weight 1, 00:30:19
+C>* 10.0.41.0/24 is directly connected, eth2, 00:30:27
+C>* 192.168.10.0/24 is directly connected, eth0, 00:30:27
+R>* 192.168.20.0/24 [120/2] via 10.0.12.2, eth1, weight 1, 00:30:23
+R>* 192.168.30.0/24 [120/3] via 10.0.12.2, eth1, weight 1, 00:30:21
+R>* 192.168.40.0/24 [120/2] via 10.0.41.1, eth2, weight 1, 00:30:19
+
+### show ip rip status
+Routing Protocol is "rip"
+  Sending updates every 30 seconds with +/-50%, next due in 12 seconds
+  Timeout after 180 seconds, garbage collect after 120 seconds
+  Outgoing update filter list for all interface is not set
+  Incoming update filter list for all interface is not set
+  Default redistribution metric is 1
+  Redistributing:
+  Default version control: send version 2, receive version 2 
+    Interface        Send  Recv   Key-chain
+    eth0             2     2      
+    eth1             2     2      
+    eth2             2     2      
+  Routing for Networks:
+    10.0.12.0/30
+    10.0.41.0/24
+    192.168.10.0/24
+  Routing Information Sources:
+    Gateway          BadPackets BadRoutes  Distance Last Update
+    10.0.12.2                0         0       120   00:00:14
+    10.0.41.1                0         0       120   00:00:10
+  Distance: (default is 120)

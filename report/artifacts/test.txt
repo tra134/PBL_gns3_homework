@@ -1,0 +1,27 @@
+=== Router checks (FRR) ===
+[PASS] R0: xem logs/R0-test.log
+[PASS] R1: xem logs/R1-test.log
+[PASS] R2: xem logs/R2-test.log
+[PASS] R3: xem logs/R3-test.log
+
+=== VPCS ping checks ===
+[PASS] PC_A: xem logs/PC_A-ping.log
+[PASS] PC_B: xem logs/PC_B-ping.log
+[PASS] PC_C: xem logs/PC_C-ping.log
+[PASS] PC_D: xem logs/PC_D-ping.log
+
+=== DHCP client check ===
+[PASS] PC_A DHCP trong 192.168.10.10-100
+
+=== Summary ===
+[PASS] R0: RIP + learned LAN routes
+[PASS] R1: RIP + learned LAN routes
+[PASS] R2: RIP + learned LAN routes
+[PASS] R3: RIP + learned LAN routes
+[PASS] PC_A: ping
+[PASS] PC_B: ping
+[PASS] PC_C: ping
+[PASS] PC_D: ping
+[PASS] PC_A received DHCP address
+
+9/9 checks marked PASS.

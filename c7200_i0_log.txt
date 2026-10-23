@@ -1,0 +1,1 @@
+2026-10-23T08:24:17.666Z VM: trying to shutdown an inactive VM.

@@ -1,0 +1,41 @@
+ show ip
+
+NAME        : PC_A[1]
+IP/MASK     : 192.168.10.29/24
+GATEWAY     : 192.168.10.1
+DNS         : 192.168.10.1  
+DHCP SERVER : 192.168.10.2
+DHCP LEASE  : 862198, 864000/432000/756000
+MAC         : 00:50:79:66:68:00
+LPORT       : 10026
+RHOST:PORT  : 127.0.0.1:10027
+MTU         : 1500
+
+PC_A
+ ping 192.168.20.1
+
+84 bytes from 192.168.20.1 icmp_seq=1 ttl=63 time=1.673 ms
+84 bytes from 192.168.20.1 icmp_seq=2 ttl=63 time=1.153 ms
+84 bytes from 192.168.20.1 icmp_seq=3 ttl=63 time=1.607 ms
+84 bytes from 192.168.20.1 icmp_seq=4 ttl=63 time=1.838 ms
+84 bytes from 192.168.20.1 icmp_seq=5 ttl=63 time=1.367 ms
+
+PC_A
+ ping 192.168.30.1
+
+84 bytes from 192.168.30.1 icmp_seq=1 ttl=62 time=1.146 ms
+84 bytes from 192.168.30.1 icmp_seq=2 ttl=62 time=1.498 ms
+84 bytes from 192.168.30.1 icmp_seq=3 ttl=62 time=1.161 ms
+84 bytes from 192.168.30.1 icmp_seq=4 ttl=62 time=1.989 ms
+84 bytes from 192.168.30.1 icmp_seq=5 ttl=62 time=1.844 ms
+
+PC_A
+ ping 192.168.40.1
+
+84 bytes from 192.168.40.1 icmp_seq=1 ttl=63 time=0.897 ms
+84 bytes from 192.168.40.1 icmp_seq=2 ttl=63 time=0.795 ms
+84 bytes from 192.168.40.1 icmp_seq=3 ttl=63 time=1.001 ms
+84 bytes from 192.168.40.1 icmp_seq=4 ttl=63 time=1.135 ms
+84 bytes from 192.168.40.1 icmp_seq=5 ttl=63 time=1.150 ms
+
+PC_A

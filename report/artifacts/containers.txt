@@ -1,0 +1,5 @@
+GNS3.DHCP-Server.4fe80004-eea4-4cb8-8b28-5ab7814a47c2	alpine:3.20	Up 30 minutes
+GNS3.R3.4fe80004-eea4-4cb8-8b28-5ab7814a47c2	frrouting/frr:latest	Up 30 minutes
+GNS3.R2.4fe80004-eea4-4cb8-8b28-5ab7814a47c2	frrouting/frr:latest	Up 30 minutes
+GNS3.R1.4fe80004-eea4-4cb8-8b28-5ab7814a47c2	frrouting/frr:latest	Up 30 minutes
+GNS3.R0.4fe80004-eea4-4cb8-8b28-5ab7814a47c2	frrouting/frr:latest	Up 30 minutes

@@ -1,0 +1,21 @@
+ show ip
+
+NAME        : PC_D[1]
+IP/MASK     : 192.168.40.10/24
+GATEWAY     : 192.168.40.1
+DNS         : 
+MAC         : 00:50:79:66:68:03
+LPORT       : 10032
+RHOST:PORT  : 127.0.0.1:10033
+MTU         : 1500
+
+PC_D
+ ping 192.168.10.1
+
+84 bytes from 192.168.10.1 icmp_seq=1 ttl=63 time=1.437 ms
+84 bytes from 192.168.10.1 icmp_seq=2 ttl=63 time=0.898 ms
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=63 time=1.140 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=63 time=0.908 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=63 time=1.406 ms
+
+PC_D

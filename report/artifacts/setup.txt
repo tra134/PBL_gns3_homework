@@ -1,0 +1,37 @@
+GNS3 API: http://127.0.0.1:3080/v3 (v3)
+GNS3 server: {'controller_host': '127.0.0.1', 'version': '3.0.6', 'local': True}
+Đã tạo project: PBL3-RIPv2-DHCP-FRR (4fe80004-eea4-4cb8-8b28-5ab7814a47c2)
+  + R0 (docker)
+  + R1 (docker)
+  + R2 (docker)
+  + R3 (docker)
+  + SW_A (ethernet_switch)
+  + SW_B (ethernet_switch)
+  + SW_C (ethernet_switch)
+  + SW_D (ethernet_switch)
+  + PC_A (vpcs)
+  + PC_B (vpcs)
+  + PC_C (vpcs)
+  + PC_D (vpcs)
+  + DHCP_Server (docker)
+  link R0:eth1 <-> R1:eth2
+  link R1:eth0 <-> R2:eth0
+  link R2:eth2 <-> R3:eth2
+  link R3:eth0 <-> R0:eth2
+  link R0:eth0 <-> SW_A:Ethernet0
+  link R1:eth1 <-> SW_B:Ethernet0
+  link R2:eth1 <-> SW_C:Ethernet0
+  link R3:eth1 <-> SW_D:Ethernet0
+  link SW_A:Ethernet1 <-> PC_A:Ethernet0
+  link SW_A:Ethernet2 <-> DHCP_Server:eth0
+  link SW_B:Ethernet1 <-> PC_B:Ethernet0
+  link SW_C:Ethernet1 <-> PC_C:Ethernet0
+  link SW_D:Ethernet1 <-> PC_D:Ethernet0
+  Tất cả router FRR đã chạy ripd.
+Cấu hình client VPCS...
+Đợi RIP và DHCP hội tụ (15s)...
+Chạy kiểm thử tự động...
+
+Hoàn tất. Project ID: 4fe80004-eea4-4cb8-8b28-5ab7814a47c2
+Mở GNS3 project: PBL3-RIPv2-DHCP-FRR
+Log nằm trong: /home/traphan/Desktop/pbl3_gns3_ripv2_dhcp/logs
