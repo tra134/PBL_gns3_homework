@@ -30,16 +30,15 @@
 \usepackage[hidelinks,unicode=true,pdfencoding=auto]{hyperref}
 \hypersetup{
   pdftitle={Báo cáo PBL3: Định tuyến động RIPv2 và máy chủ DHCP trên GNS3},
-  pdfauthor={Nhóm PBL3},
-  pdfsubject={Tái triển khai bài lab RIPv2 và DHCP trên GNS3 với FRRouting và Docker},
-  pdfkeywords={RIPv2, DHCP, GNS3, FRRouting, Docker, VPCS}
+  pdfauthor={Thái Viết Đại, Phan Văn Trà},
+  pdfsubject={Tái triển khai bài lab RIPv2 và DHCP trên GNS3 với FRRouting và Docker}
 }
 
 % ------------------------------------------------------------------
 % Màu và định dạng chung
 % ------------------------------------------------------------------
-\definecolor{primary}{HTML}{1F4E79}
-\definecolor{accent}{HTML}{2E86AB}
+\definecolor{primary}{HTML}{000000}
+\definecolor{accent}{HTML}{000000}
 \definecolor{passgreen}{HTML}{1A7F37}
 \definecolor{codebg}{HTML}{F6F8FA}
 \definecolor{codeborder}{HTML}{D0D7DE}
@@ -56,12 +55,12 @@
 
 \titleformat{\section}[block]{\sffamily\Large\bfseries\color{primary}}{\thesection.}{0.55em}{}
 \titlespacing*{\section}{0pt}{14pt}{6pt}
-\titleformat{\subsection}[block]{\sffamily\large\bfseries\color{primary!90!black}}{\thesubsection}{0.55em}{}
+\titleformat{\subsection}[block]{\sffamily\large\bfseries\color{black}}{\thesubsection}{0.55em}{}
 \titlespacing*{\subsection}{0pt}{10pt}{4pt}
 \titleformat{\subsubsection}[block]{\sffamily\normalsize\bfseries\color{accent}}{\thesubsubsection}{0.55em}{}
 
 \renewcommand{\thesection}{\Roman{section}}
-\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
 \renewcommand{\contentsname}{MỤC LỤC}
 
@@ -100,16 +99,16 @@
   language=FRR,
   basicstyle=\ttfamily\footnotesize,
   keywordstyle=\color{primary}\bfseries,
-  commentstyle=\color{gray!80!black}\itshape,
+  commentstyle=\color{black}\itshape,
   backgroundcolor=\color{codebg},
   frame=single,
   rulecolor=\color{codeborder},
   framerule=0.4pt,
   numbers=left,
-  numberstyle=\tiny\color{gray},
+  numberstyle=\tiny\color{black},
   numbersep=8pt,
   breaklines=true,
-  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
+  postbreak=\mbox{\textcolor{black}{$\hookrightarrow$}\space},
   showstringspaces=false,
   columns=fullflexible,
   keepspaces=true,
@@ -126,7 +125,7 @@
   rulecolor=\color{codeborder},
   framerule=0.4pt,
   numbers=left,
-  numberstyle=\tiny\color{gray},
+  numberstyle=\tiny\color{black},
   numbersep=8pt,
   breaklines=true,
   showstringspaces=false,
@@ -191,15 +190,16 @@
   {\sffamily\normalsize
     \renewcommand{\arraystretch}{1.45}
     \begin{tabular}{@{}l@{\hspace{0.45cm}}l@{}}
-      Nhóm thực hiện:  & \textbf{PBL3}                   \\
-      Hình thức:       & Báo cáo thực hành mạng máy tính \\
-      Môi trường:      & GNS3 3.0.6, FRRouting 8.4,      \\
-                       & Docker, VPCS 0.8.5              \\
-      Ngày hoàn thành: & 23/10/2026                      \\
+      Người thực hiện:& \textbf{Thái Viết Đại} \\
+                      & \textbf{Phan Văn Trà} \\
+      Giảng viên hướng dẫn: & \textbf{TS. Đào Duy Tuấn} \\
+      Hình thức:      & Báo cáo thực hành mạng máy tính \\
+      Môi trường:     & GNS3 3.0.6, FRRouting 8.4, \\
+                      & Docker, VPCS 0.8.5 \\
     \end{tabular}\par}
 
   \vfill
-  {\sffamily\small\color{black!65}
+  {\sffamily\small\color{black}
     Báo cáo được xây dựng dựa trên đề bài và bố cục của báo cáo PBL3 gốc\\
     trên Cisco Packet Tracer, sau đó tái triển khai và kiểm thử trên GNS3.\par}
   \vspace{0.4cm}
@@ -225,11 +225,9 @@ Toàn bộ topology, địa chỉ IP và cấu hình được tạo tự động
 RIPv2 hội tụ, cả bốn router đều học đủ ba mạng LAN còn lại; PC\_A nhận địa chỉ động trong dải
 \texttt{192.168.10.10--192.168.10.100}; các phép ping liên mạng từ PC\_A và PC\_D đều thành công.
 Bộ kiểm thử tự động \texttt{test.sh} ghi nhận \textbf{9/9} hạng mục PASS. Báo cáo cũng phân tích
-các vấn đề kỹ thuật gặp phải khi chuyển từ Packet Tracer sang GNS3/FRR và đề xuất hướng mở rộng.
+các vấn đề kỹ thuật gặp phải khi chuyển từ Packet Tracer sang GNS3/FRR.
 
-\vspace{0.4cm}
-\noindent\textbf{Từ khóa:} RIPv2, DHCP, GNS3, FRRouting, Docker, VPCS, định tuyến động, mạng vòng.
-
+\newpage
 \tableofcontents
 \newpage
 
@@ -310,59 +308,59 @@ các router; các đường nét mảnh là liên kết LAN.
 \begin{figure}[H]
   \centering
   \resizebox{\textwidth}{!}{%
-    \begin{tikzpicture}
-      % --- Router ---
-      \node[router] (R0) at (-3.8,0)   {R0};
-      \node[router] (R1) at (0,2.8)    {R1};
-      \node[router] (R2) at (3.8,0)    {R2};
-      \node[router] (R3) at (0,-2.8)   {R3};
+  \begin{tikzpicture}
+    % --- Router ---
+    \node[router] (R0) at (-3.8,0)   {R0};
+    \node[router] (R1) at (0,2.8)    {R1};
+    \node[router] (R2) at (3.8,0)    {R2};
+    \node[router] (R3) at (0,-2.8)   {R3};
 
-      % --- Switch LAN ---
-      \node[switch] (SWA) at (-6.2,0)  {SW\_A};
-      \node[switch] (SWB) at (0,5.0)   {SW\_B};
-      \node[switch] (SWC) at (6.2,0)   {SW\_C};
-      \node[switch] (SWD) at (0,-5.0)  {SW\_D};
+    % --- Switch LAN ---
+    \node[switch] (SWA) at (-6.2,0)  {SW\_A};
+    \node[switch] (SWB) at (0,5.0)   {SW\_B};
+    \node[switch] (SWC) at (6.2,0)   {SW\_C};
+    \node[switch] (SWD) at (0,-5.0)  {SW\_D};
 
-      % --- Client / server ---
-      \node[pc]     (PCA)  at (-8.2,-1.0) {PC\_A};
-      \node[server] (DHCP) at (-8.2,1.0)  {DHCP\\Server};
-      \node[pc]     (PCB)  at (1.9,5.0)   {PC\_B};
-      \node[pc]     (PCC)  at (8.2,1.0)   {PC\_C};
-      \node[pc]     (PCD)  at (-1.9,-5.0) {PC\_D};
+    % --- Client / server ---
+    \node[pc]     (PCA)  at (-8.2,-1.0) {PC\_A};
+    \node[server] (DHCP) at (-8.2,1.0)  {DHCP\\Server};
+    \node[pc]     (PCB)  at (1.9,5.0)   {PC\_B};
+    \node[pc]     (PCC)  at (8.2,1.0)   {PC\_C};
+    \node[pc]     (PCD)  at (-1.9,-5.0) {PC\_D};
 
-      % --- WAN ring ---
-      \draw[wan] (R0) -- node[above,sloped,font=\scriptsize,fill=white,inner sep=1pt]
+    % --- WAN ring ---
+    \draw[wan] (R0) -- node[above,sloped,font=\scriptsize,fill=white,inner sep=1pt]
       {10.0.12.0/30} (R1);
-      \draw[wan] (R1) -- node[above,sloped,font=\scriptsize,fill=white,inner sep=1pt]
+    \draw[wan] (R1) -- node[above,sloped,font=\scriptsize,fill=white,inner sep=1pt]
       {10.0.23.0/24} (R2);
-      \draw[wan] (R2) -- node[above,sloped,font=\scriptsize,fill=white,inner sep=1pt]
+    \draw[wan] (R2) -- node[above,sloped,font=\scriptsize,fill=white,inner sep=1pt]
       {10.0.34.0/24} (R3);
-      \draw[wan] (R3) -- node[above,sloped,font=\scriptsize,fill=white,inner sep=1pt]
+    \draw[wan] (R3) -- node[above,sloped,font=\scriptsize,fill=white,inner sep=1pt]
       {10.0.41.0/24} (R0);
 
-      % --- LAN links ---
-      \draw[lan] (R0) -- node[above=10pt,align=center,font=\scriptsize,fill=white,inner sep=1pt]
+    % --- LAN links ---
+    \draw[lan] (R0) -- node[above=10pt,align=center,font=\scriptsize,fill=white,inner sep=1pt]
       {LAN A\\192.168.10.0/24} (SWA);
-      \draw[lan] (R1) -- node[right,align=left,font=\scriptsize,fill=white,inner sep=1pt]
+    \draw[lan] (R1) -- node[right,align=left,font=\scriptsize,fill=white,inner sep=1pt]
       {LAN B\\192.168.20.0/24} (SWB);
-      \draw[lan] (R2) -- node[above=10pt,align=center,font=\scriptsize,fill=white,inner sep=1pt]
+    \draw[lan] (R2) -- node[above=10pt,align=center,font=\scriptsize,fill=white,inner sep=1pt]
       {LAN C\\192.168.30.0/24} (SWC);
-      \draw[lan] (R3) -- node[right,align=left,font=\scriptsize,fill=white,inner sep=1pt]
+    \draw[lan] (R3) -- node[right,align=left,font=\scriptsize,fill=white,inner sep=1pt]
       {LAN D\\192.168.40.0/24} (SWD);
 
-      % --- Access links ---
-      \draw[edge] (SWA) -- (PCA);
-      \draw[edge] (SWA) -- (DHCP);
-      \draw[edge] (SWB) -- (PCB);
-      \draw[edge] (SWC) -- (PCC);
-      \draw[edge] (SWD) -- (PCD);
+    % --- Access links ---
+    \draw[edge] (SWA) -- (PCA);
+    \draw[edge] (SWA) -- (DHCP);
+    \draw[edge] (SWB) -- (PCB);
+    \draw[edge] (SWC) -- (PCC);
+    \draw[edge] (SWD) -- (PCD);
 
-      \node[below=3pt of DHCP,font=\scriptsize,text=orange!80!black]
+    \node[below=3pt of DHCP,font=\scriptsize,text=black]
       {pool .10--.100};
-      \node[above=1pt of PCB,font=\scriptsize,text=black!65] {static .10};
-      \node[above=1pt of PCC,font=\scriptsize,text=black!65] {static .10};
-      \node[below=1pt of PCD,font=\scriptsize,text=black!65] {static .10};
-    \end{tikzpicture}}
+    \node[above=1pt of PCB,font=\scriptsize,text=black] {static .10};
+    \node[above=1pt of PCC,font=\scriptsize,text=black] {static .10};
+    \node[below=1pt of PCD,font=\scriptsize,text=black] {static .10};
+  \end{tikzpicture}}
   \caption{Sơ đồ triển khai trên GNS3: router FRR, switch LAN, PC và DHCP server.}
   \label{fig:topology}
 \end{figure}
@@ -378,12 +376,12 @@ Bảng~\ref{tab:wan} tóm tắt bốn liên kết WAN tạo thành vòng. Liên 
   \label{tab:wan}
   \begin{tabularx}{\textwidth}{@{}l l l X@{}}
     \toprule
-    \textbf{Kết nối} & \textbf{Mạng WAN} & \textbf{Subnet mask} & \textbf{Ghi chú}                    \\
+    \textbf{Kết nối} & \textbf{Mạng WAN} & \textbf{Subnet mask} & \textbf{Ghi chú} \\
     \midrule
-    R0 -- R1         & 10.0.12.0/30      & 255.255.255.252      & Liên kết trực tiếp, subnet nhỏ nhất \\
-    R1 -- R2         & 10.0.23.0/24      & 255.255.255.0        & Liên kết trực tiếp                  \\
-    R2 -- R3         & 10.0.34.0/24      & 255.255.255.0        & Liên kết trực tiếp                  \\
-    R3 -- R0         & 10.0.41.0/24      & 255.255.255.0        & Liên kết trực tiếp                  \\
+    R0 -- R1 & 10.0.12.0/30 & 255.255.255.252 & Liên kết trực tiếp, subnet nhỏ nhất \\
+    R1 -- R2 & 10.0.23.0/24 & 255.255.255.0   & Liên kết trực tiếp \\
+    R2 -- R3 & 10.0.34.0/24 & 255.255.255.0   & Liên kết trực tiếp \\
+    R3 -- R0 & 10.0.41.0/24 & 255.255.255.0   & Liên kết trực tiếp \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -404,26 +402,26 @@ tương ứng với các cổng GigabitEthernet trong báo cáo gốc.
     \textbf{Thiết bị} & \textbf{Interface} & \textbf{Địa chỉ IP} & \textbf{Subnet mask} & \textbf{Kết nối / ghi chú} \\
     \midrule
     \multirow{3}{*}{R0}
-                      & eth0               & 192.168.10.1        & 255.255.255.0        & Gateway Network A (SW\_A)  \\
-                      & eth1               & 10.0.12.1           & 255.255.255.252      & Kết nối R0 -- R1           \\
-                      & eth2               & 10.0.41.2           & 255.255.255.0        & Kết nối R0 -- R3           \\
+      & eth0 & 192.168.10.1 & 255.255.255.0   & Gateway Network A (SW\_A) \\
+      & eth1 & 10.0.12.1    & 255.255.255.252 & Kết nối R0 -- R1 \\
+      & eth2 & 10.0.41.2    & 255.255.255.0   & Kết nối R0 -- R3 \\
     \midrule
     \multirow{3}{*}{R1}
-                      & eth0               & 10.0.23.1           & 255.255.255.0        & Kết nối R1 -- R2           \\
-                      & eth1               & 192.168.20.1        & 255.255.255.0        & Gateway Network B (SW\_B)  \\
-                      & eth2               & 10.0.12.2           & 255.255.255.252      & Kết nối R1 -- R0           \\
+      & eth0 & 10.0.23.1    & 255.255.255.0   & Kết nối R1 -- R2 \\
+      & eth1 & 192.168.20.1 & 255.255.255.0   & Gateway Network B (SW\_B) \\
+      & eth2 & 10.0.12.2    & 255.255.255.252 & Kết nối R1 -- R0 \\
     \midrule
     \multirow{3}{*}{R2}
-                      & eth0               & 10.0.23.2           & 255.255.255.0        & Kết nối R2 -- R1           \\
-                      & eth1               & 192.168.30.1        & 255.255.255.0        & Gateway Network C (SW\_C)  \\
-                      & eth2               & 10.0.34.1           & 255.255.255.0        & Kết nối R2 -- R3           \\
+      & eth0 & 10.0.23.2    & 255.255.255.0   & Kết nối R2 -- R1 \\
+      & eth1 & 192.168.30.1 & 255.255.255.0   & Gateway Network C (SW\_C) \\
+      & eth2 & 10.0.34.1    & 255.255.255.0   & Kết nối R2 -- R3 \\
     \midrule
     \multirow{3}{*}{R3}
-                      & eth0               & 10.0.41.1           & 255.255.255.0        & Kết nối R3 -- R0           \\
-                      & eth1               & 192.168.40.1        & 255.255.255.0        & Gateway Network D (SW\_D)  \\
-                      & eth2               & 10.0.34.2           & 255.255.255.0        & Kết nối R3 -- R2           \\
+      & eth0 & 10.0.41.1    & 255.255.255.0   & Kết nối R3 -- R0 \\
+      & eth1 & 192.168.40.1 & 255.255.255.0   & Gateway Network D (SW\_D) \\
+      & eth2 & 10.0.34.2    & 255.255.255.0   & Kết nối R3 -- R2 \\
     \midrule
-    DHCP server       & eth0               & 192.168.10.2        & 255.255.255.0        & Gateway: 192.168.10.1      \\
+    DHCP server & eth0 & 192.168.10.2 & 255.255.255.0 & Gateway: 192.168.10.1 \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -490,16 +488,16 @@ Bộ script Python gồm các thành phần sau:
   \label{tab:scripts}
   \begin{tabularx}{\textwidth}{@{}l X@{}}
     \toprule
-    \textbf{File}       & \textbf{Vai trò}                                                         \\
+    \textbf{File} & \textbf{Vai trò} \\
     \midrule
-    \texttt{doctor.py}  & Kiểm tra GNS3 API, template, compute, Docker image, VPCS, Dynamips,
-    \texttt{ubridge} và BusyBox trước khi chạy lab.                                                \\
-    \texttt{setup.py}   & Tạo project, template, 13 node, 13 link; gán IP và cấu hình RIPv2/DHCP;
-    lưu \texttt{state.json}.                                                                       \\
-    \texttt{test.py}    & Kiểm tra bảng định tuyến, trạng thái RIP, ping từ bốn PC và DHCP client;
-    trả mã lỗi nếu có hạng mục FAIL.                                                               \\
-    \texttt{cleanup.py} & Xóa project và template do lab tạo, có xác nhận trước khi xóa.           \\
-    \texttt{common.py}  & Hàm dùng chung: gọi API, load/save state, đường dẫn log.                 \\
+    \texttt{doctor.py} & Kiểm tra GNS3 API, template, compute, Docker image, VPCS, Dynamips,
+      \texttt{ubridge} và BusyBox trước khi chạy lab. \\
+    \texttt{setup.py} & Tạo project, template, 13 node, 13 link; gán IP và cấu hình RIPv2/DHCP;
+      lưu \texttt{state.json}. \\
+    \texttt{test.py} & Kiểm tra bảng định tuyến, trạng thái RIP, ping từ bốn PC và DHCP client;
+      trả mã lỗi nếu có hạng mục FAIL. \\
+    \texttt{cleanup.py} & Xóa project và template do lab tạo, có xác nhận trước khi xóa. \\
+    \texttt{common.py} & Hàm dùng chung: gọi API, load/save state, đường dẫn log. \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -518,7 +516,7 @@ tự động. Kết quả và log được lưu trong thư mục \texttt{logs/} 
 chỉ IP và các mạng được quảng bá; toàn bộ được trình bày trong Phụ lục~\ref{app:configs}.
 
 \lstinputlisting[style=frr,caption={Cấu hình FRR của R0.},label={lst:r0}]
-{artifacts/configs/R0.conf}
+  {artifacts/configs/R0.conf}
 
 \subsection{Tóm tắt cấu hình R1, R2, R3}
 
@@ -531,14 +529,14 @@ Bảng~\ref{tab:routers} tóm tắt interface và các mạng được quảng b
   \small
   \begin{tabularx}{\textwidth}{@{}l l l X@{}}
     \toprule
-    \textbf{Router} & \textbf{LAN}    & \textbf{Interface LAN} & \textbf{Mạng WAN và subnet} \\
+    \textbf{Router} & \textbf{LAN} & \textbf{Interface LAN} & \textbf{Mạng WAN và subnet} \\
     \midrule
-    R1              & 192.168.20.0/24 & eth1: 192.168.20.1/24  &
-    eth0: 10.0.23.1/24 (R1--R2); eth2: 10.0.12.2/30 (R1--R0)                                 \\
-    R2              & 192.168.30.0/24 & eth1: 192.168.30.1/24  &
-    eth0: 10.0.23.2/24 (R2--R1); eth2: 10.0.34.1/24 (R2--R3)                                 \\
-    R3              & 192.168.40.0/24 & eth1: 192.168.40.1/24  &
-    eth0: 10.0.41.1/24 (R3--R0); eth2: 10.0.34.2/24 (R3--R2)                                 \\
+    R1 & 192.168.20.0/24 & eth1: 192.168.20.1/24 &
+      eth0: 10.0.23.1/24 (R1--R2); eth2: 10.0.12.2/30 (R1--R0) \\
+    R2 & 192.168.30.0/24 & eth1: 192.168.30.1/24 &
+      eth0: 10.0.23.2/24 (R2--R1); eth2: 10.0.34.1/24 (R2--R3) \\
+    R3 & 192.168.40.0/24 & eth1: 192.168.40.1/24 &
+      eth0: 10.0.41.1/24 (R3--R0); eth2: 10.0.34.2/24 (R3--R2) \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -550,7 +548,7 @@ nghe trên \texttt{eth0}, cấp địa chỉ trong dải \texttt{.10--.100}, đ�
 DNS là \texttt{192.168.10.1}.
 
 \lstinputlisting[style=plaincode,caption={Cấu hình BusyBox \texttt{udhcpd}.},label={lst:dhcp}]
-{artifacts/configs/udhcpd.conf}
+  {artifacts/configs/udhcpd.conf}
 
 \subsection{Cấu hình máy trạm VPCS}
 
@@ -601,15 +599,15 @@ ip 192.168.40.10/24 192.168.40.1
   \label{tab:env}
   \begin{tabularx}{\textwidth}{@{}l l X@{}}
     \toprule
-    \textbf{Thành phần} & \textbf{Phiên bản}           & \textbf{Ghi chú}                        \\
+    \textbf{Thành phần} & \textbf{Phiên bản} & \textbf{Ghi chú} \\
     \midrule
-    Hệ điều hành        & Debian GNU/Linux 13 (trixie) & Kernel 6.12.111+deb13-amd64             \\
-    GNS3                & 3.0.6                        & Local server, API v3                    \\
-    FRRouting           & 8.4\_git                     & Container \texttt{frrouting/frr:latest} \\
-    Docker              & 29.9.2                       & Chạy trên cùng máy                      \\
-    DHCP server         & Alpine 3.20 + BusyBox        & \texttt{udhcpd}                         \\
-    VPCS                & 0.8.5                        & Bốn máy trạm                            \\
-    Python              & 3.13.5                       & Script tự động hóa                      \\
+    Hệ điều hành & Debian GNU/Linux 13 (trixie) & Kernel 6.12.111+deb13-amd64 \\
+    GNS3 & 3.0.6 & Local server, API v3 \\
+    FRRouting & 8.4\_git & Container \texttt{frrouting/frr:latest} \\
+    Docker & 29.9.2 & Chạy trên cùng máy \\
+    DHCP server & Alpine 3.20 + BusyBox & \texttt{udhcpd} \\
+    VPCS & 0.8.5 & Bốn máy trạm \\
+    Python & 3.13.5 & Script tự động hóa \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -699,13 +697,13 @@ nối trực tiếp; ``R'' là route học qua RIP, kèm next-hop và metric.
   \footnotesize
   \begin{tabularx}{\textwidth}{@{}l *{4}{>{\centering\arraybackslash}X}@{}}
     \toprule
-    \textbf{Router}          & \textbf{192.168.10.0/24} & \textbf{192.168.20.0/24} &
-    \textbf{192.168.30.0/24} & \textbf{192.168.40.0/24}                                                                  \\
+    \textbf{Router} & \textbf{192.168.10.0/24} & \textbf{192.168.20.0/24} &
+      \textbf{192.168.30.0/24} & \textbf{192.168.40.0/24} \\
     \midrule
-    R0                       & C                        & R, 10.0.12.2 (2)         & R, 10.0.12.2 (3) & R, 10.0.41.1 (2) \\
-    R1                       & R, 10.0.12.1 (2)         & C                        & R, 10.0.23.2 (2) & R, 10.0.23.2 (3) \\
-    R2                       & R, 10.0.23.1 (3)         & R, 10.0.23.1 (2)         & C                & R, 10.0.34.2 (2) \\
-    R3                       & R, 10.0.41.2 (2)         & R, 10.0.41.2 (3)         & R, 10.0.34.1 (2) & C                \\
+    R0 & C & R, 10.0.12.2 (2) & R, 10.0.12.2 (3) & R, 10.0.41.1 (2) \\
+    R1 & R, 10.0.12.1 (2) & C & R, 10.0.23.2 (2) & R, 10.0.23.2 (3) \\
+    R2 & R, 10.0.23.1 (3) & R, 10.0.23.1 (2) & C & R, 10.0.34.2 (2) \\
+    R3 & R, 10.0.41.2 (2) & R, 10.0.41.2 (3) & R, 10.0.34.1 (2) & C \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -758,13 +756,13 @@ theo nhánh R3).
   \label{tab:ping}
   \begin{tabularx}{\textwidth}{@{}l l l l@{}}
     \toprule
-    \textbf{Nguồn}        & \textbf{Đích}       & \textbf{Kết quả} & \textbf{TTL} \\
+    \textbf{Nguồn} & \textbf{Đích} & \textbf{Kết quả} & \textbf{TTL} \\
     \midrule
-    PC\_A (192.168.10.29) & 192.168.10.1 (GW A) & 5/5, 100\%       & 64           \\
-    PC\_A (192.168.10.29) & 192.168.20.1 (GW B) & 5/5, 100\%       & 63           \\
-    PC\_A (192.168.10.29) & 192.168.30.1 (GW C) & 5/5, 100\%       & 62           \\
-    PC\_A (192.168.10.29) & 192.168.40.1 (GW D) & 5/5, 100\%       & 63           \\
-    PC\_D (192.168.40.10) & 192.168.10.1 (GW A) & 5/5, 100\%       & 63           \\
+    PC\_A (192.168.10.29) & 192.168.10.1 (GW A) & 5/5, 100\% & 64 \\
+    PC\_A (192.168.10.29) & 192.168.20.1 (GW B) & 5/5, 100\% & 63 \\
+    PC\_A (192.168.10.29) & 192.168.30.1 (GW C) & 5/5, 100\% & 62 \\
+    PC\_A (192.168.10.29) & 192.168.40.1 (GW D) & 5/5, 100\% & 63 \\
+    PC\_D (192.168.40.10) & 192.168.10.1 (GW A) & 5/5, 100\% & 63 \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -788,8 +786,7 @@ Sau khoảng 15 giây, cả bốn router đã có đủ route và không còn hi
 ping. Trạng thái RIP cho thấy các bản tin cập nhật gần nhất cách thời điểm kiểm tra 10--14 giây,
 phù hợp với chu kỳ 30 giây. Với topology vòng, nếu một liên kết WAN bị đứt, RIPv2 có thể học
 đường thay thế qua nhánh còn lại; tuy nhiên trong phạm vi báo cáo này chưa thực hiện kịch bản
-phá liên kết, nên chưa có số liệu thời gian hội tụ khi có sự cố. Đây là hướng kiểm thử bổ sung
-được đề xuất ở Chương~\ref{sec:future}.
+phá liên kết, nên chưa có số liệu thời gian hội tụ khi có sự cố.
 
 % ==================================================================
 \section{THẢO LUẬN}
@@ -804,15 +801,15 @@ phá liên kết, nên chưa có số liệu thời gian hội tụ khi có sự
   \small
   \begin{tabularx}{\textwidth}{@{}l X X@{}}
     \toprule
-    \textbf{Tiêu chí} & \textbf{Packet Tracer (báo cáo gốc)}              & \textbf{GNS3 + FRR (báo cáo này)}                           \\
+    \textbf{Tiêu chí} & \textbf{Packet Tracer (báo cáo gốc)} & \textbf{GNS3 + FRR (báo cáo này)} \\
     \midrule
-    Bản chất          & Mô phỏng thiết bị và CLI Cisco                    & Router thật chạy FRR trong container Docker                 \\
-    Giấy phép         & Cần image IOS/IOSv có bản quyền nếu muốn IOS thật & FRR mã nguồn mở, không cần image Cisco                      \\
-    CLI               & Cisco IOS                                         & \texttt{vtysh}, cú pháp gần IOS nhưng không giống hoàn toàn \\
-    DHCP              & Server0 trên GUI                                  & Alpine + BusyBox \texttt{udhcpd}                            \\
-    Máy trạm          & Laptop mô phỏng                                   & VPCS 0.8.5                                                  \\
-    Khả năng tái lập  & Thao tác GUI, khó tự động hóa                     & Toàn bộ tạo bằng API/Python, có \texttt{state.json}         \\
-    Độ chân thực      & Mô phỏng                                          & Gần với môi trường Linux/container thật                     \\
+    Bản chất & Mô phỏng thiết bị và CLI Cisco & Router thật chạy FRR trong container Docker \\
+    Giấy phép & Cần image IOS/IOSv có bản quyền nếu muốn IOS thật & FRR mã nguồn mở, không cần image Cisco \\
+    CLI & Cisco IOS & \texttt{vtysh}, cú pháp gần IOS nhưng không giống hoàn toàn \\
+    DHCP & Server0 trên GUI & Alpine + BusyBox \texttt{udhcpd} \\
+    Máy trạm & Laptop mô phỏng & VPCS 0.8.5 \\
+    Khả năng tái lập & Thao tác GUI, khó tự động hóa & Toàn bộ tạo bằng API/Python, có \texttt{state.json} \\
+    Độ chân thực & Mô phỏng & Gần với môi trường Linux/container thật \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -826,16 +823,16 @@ phá liên kết, nên chưa có số liệu thời gian hội tụ khi có sự
   \small
   \begin{tabularx}{\textwidth}{@{}l X X@{}}
     \toprule
-    \textbf{Vấn đề}                     & \textbf{Nguyên nhân}                                     & \textbf{Cách xử lý}                           \\
+    \textbf{Vấn đề} & \textbf{Nguyên nhân} & \textbf{Cách xử lý} \\
     \midrule
-    Router không nhận cấu hình          & API v3 yêu cầu \texttt{start\_command} nằm trong
-    \texttt{properties}                 & Gửi \texttt{\{"properties": \{"start\_command": ...\}\}}                                                 \\
-    VPCS treo khi kết nối lại           & Prompt chưa được in sau khi reconnect                    & Gửi \texttt{\textbackslash r\textbackslash n}
-    trước khi \texttt{expect(">")}                                                                                                                 \\
-    Lỗi \texttt{no auto-summary}        & FRR 8.4 không hỗ trợ lệnh này                            & Bỏ lệnh; RIPv2 mặc định classless             \\
-    Không có \texttt{show ip protocols} & FRR dùng lệnh khác                                       & Dùng \texttt{show ip rip status}              \\
-    Thiếu image IOS                     & IOSv cần bản quyền                                       & Thay bằng FRR Docker                          \\
-    Không thấy file lease               & BusyBox giữ lease trong bộ nhớ                           & Kiểm tra từ client bằng \texttt{show ip}      \\
+    Router không nhận cấu hình & API v3 yêu cầu \texttt{start\_command} nằm trong
+      \texttt{properties} & Gửi \texttt{\{"properties": \{"start\_command": ...\}\}} \\
+    VPCS treo khi kết nối lại & Prompt chưa được in sau khi reconnect & Gửi \texttt{\textbackslash r\textbackslash n}
+      trước khi \texttt{expect(">")} \\
+    Lỗi \texttt{no auto-summary} & FRR 8.4 không hỗ trợ lệnh này & Bỏ lệnh; RIPv2 mặc định classless \\
+    Không có \texttt{show ip protocols} & FRR dùng lệnh khác & Dùng \texttt{show ip rip status} \\
+    Thiếu image IOS & IOSv cần bản quyền & Thay bằng FRR Docker \\
+    Không thấy file lease & BusyBox giữ lease trong bộ nhớ & Kiểm tra từ client bằng \texttt{show ip} \\
     \bottomrule
   \end{tabularx}
 \end{table}
@@ -864,8 +861,7 @@ việc dùng API giúp tái lập lab nhanh, nhưng đòi hỏi hiểu rõ cấu
 là các trường trong \texttt{properties} của node Docker.
 
 % ==================================================================
-\section{KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN}
-\label{sec:future}
+\section{KẾT LUẬN}
 % ==================================================================
 
 \subsection{Kết luận}
@@ -883,56 +879,40 @@ là các trường trong \texttt{properties} của node Docker.
         lặp lại, giảm phụ thuộc vào thao tác thủ công.
 \end{itemize}
 
-\subsection{Hướng phát triển}
-
-\begin{enumerate}[leftmargin=1.7em,itemsep=2pt]
-  \item \textbf{Kiểm thử chịu lỗi:} chủ động shutdown một liên kết WAN, đo thời gian hội tụ lại
-        của RIPv2 và xác nhận lưu lượng chuyển sang nhánh còn lại.
-  \item \textbf{Mở rộng dịch vụ DHCP:} thêm DHCP relay trên các router để cấp phát cho nhiều LAN,
-        hoặc thay BusyBox bằng Kea/dnsmasq để có lease database bền vững.
-  \item \textbf{An ninh định tuyến:} cấu hình xác thực RIPv2 bằng key chain, route filtering và
-        kiểm soát quảng bá giữa các vùng.
-  \item \textbf{Mở rộng giao thức:} thử OSPF/OSPFv3, RIPng cho IPv6 và so sánh thời gian hội tụ
-        với RIPv2.
-  \item \textbf{Tự động hóa kiểm thử:} chuyển \texttt{test.py} thành bộ test có báo cáo HTML,
-        chạy trong CI và lưu artifact theo từng lần build.
-  \item \textbf{Giám sát:} bật syslog, SNMP và bắt gói RIPv2 bằng Wireshark để phân tích chi tiết
-        bản tin cập nhật.
-\end{enumerate}
-
 % ==================================================================
 \begin{thebibliography}{9}
-  % ==================================================================
+% ==================================================================
 
-  \bibitem{rfc2453}
-  G. Malkin, \emph{RIP Version 2}, RFC 2453, IETF, 1998.
+\bibitem{rfc2453}
+G. Malkin, \emph{RIP Version 2}, RFC 2453, IETF, 1998.
 
-  \bibitem{rfc2131}
-  R. Droms, \emph{Dynamic Host Configuration Protocol}, RFC 2131, IETF, 1997.
+\bibitem{rfc2131}
+R. Droms, \emph{Dynamic Host Configuration Protocol}, RFC 2131, IETF, 1997.
 
-  \bibitem{frr}
-  FRRouting Project, \emph{FRRouting Documentation -- RIP}, \url{https://docs.frrouting.org/}.
+\bibitem{frr}
+FRRouting Project, \emph{FRRouting Documentation -- RIP}, \url{https://docs.frrouting.org/}.
 
-  \bibitem{gns3}
-  GNS3, \emph{GNS3 Documentation -- API v3}, \url{https://docs.gns3.com/}.
+\bibitem{gns3}
+GNS3, \emph{GNS3 Documentation -- API v3}, \url{https://docs.gns3.com/}.
 
-  \bibitem{busybox}
-  BusyBox, \emph{BusyBox udhcpd}, \url{https://busybox.net/}.
+\bibitem{busybox}
+BusyBox, \emph{BusyBox udhcpd}, \url{https://busybox.net/}.
 
-  \bibitem{vpcs}
-  GNS3, \emph{Virtual PC Simulator (VPCS)}, \url{https://github.com/GNS3/vpcs}.
+\bibitem{vpcs}
+GNS3, \emph{Virtual PC Simulator (VPCS)}, \url{https://github.com/GNS3/vpcs}.
 
-  \bibitem{original}
-  Nhóm PBL3, \emph{Báo cáo PBL3: Định tuyến động RIPv2 và máy chủ DHCP trên Cisco Packet Tracer},
-  2026.
+\bibitem{original}
+Nhóm PBL3, \emph{Báo cáo PBL3: Định tuyến động RIPv2 và máy chủ DHCP trên Cisco Packet Tracer},
+2026.
 
-  \bibitem{cisco}
-  Cisco Systems, \emph{IP Routing: RIP Command Reference}, \url{https://www.cisco.com/}.
+\bibitem{cisco}
+Cisco Systems, \emph{IP Routing: RIP Command Reference}, \url{https://www.cisco.com/}.
 
 \end{thebibliography}
 
 % ==================================================================
 \appendix
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
 \section{CẤU HÌNH FRR ĐẦY ĐỦ}
 \label{app:configs}
 % ==================================================================
@@ -942,17 +922,17 @@ Phần này trình bày cấu hình của R1, R2 và R3. Cấu hình R0 đã có
 \subsection{R1}
 
 \lstinputlisting[style=frr,caption={Cấu hình FRR của R1.}]
-{artifacts/configs/R1.conf}
+  {artifacts/configs/R1.conf}
 
 \subsection{R2}
 
 \lstinputlisting[style=frr,caption={Cấu hình FRR của R2.}]
-{artifacts/configs/R2.conf}
+  {artifacts/configs/R2.conf}
 
 \subsection{R3}
 
 \lstinputlisting[style=frr,caption={Cấu hình FRR của R3.}]
-{artifacts/configs/R3.conf}
+  {artifacts/configs/R3.conf}
 
 % ==================================================================
 \section{CẤU TRÚC THƯ MỤC VÀ LỆNH CHẠY}
@@ -1005,17 +985,17 @@ docker exec GNS3.R0.<project-id> vtysh -c "show ip rip status"
   \label{tab:testmatrix}
   \begin{tabularx}{\textwidth}{@{}c l X c@{}}
     \toprule
-    \textbf{STT} & \textbf{Hạng mục} & \textbf{Nội dung kiểm tra}                 & \textbf{Kết quả} \\
+    \textbf{STT} & \textbf{Hạng mục} & \textbf{Nội dung kiểm tra} & \textbf{Kết quả} \\
     \midrule
-    1            & R0                & Có tiến trình RIP và đủ route LAN 20/30/40 & PASS             \\
-    2            & R1                & Có tiến trình RIP và đủ route LAN 10/30/40 & PASS             \\
-    3            & R2                & Có tiến trình RIP và đủ route LAN 10/20/40 & PASS             \\
-    4            & R3                & Có tiến trình RIP và đủ route LAN 10/20/30 & PASS             \\
-    5            & PC\_A             & Ping được bốn gateway                      & PASS             \\
-    6            & PC\_B             & Ping được gateway B và A                   & PASS             \\
-    7            & PC\_C             & Ping được gateway C và A                   & PASS             \\
-    8            & PC\_D             & Ping được gateway D và A                   & PASS             \\
-    9            & DHCP              & PC\_A nhận IP trong dải 192.168.10.10--100 & PASS             \\
+    1 & R0 & Có tiến trình RIP và đủ route LAN 20/30/40 & PASS \\
+    2 & R1 & Có tiến trình RIP và đủ route LAN 10/30/40 & PASS \\
+    3 & R2 & Có tiến trình RIP và đủ route LAN 10/20/40 & PASS \\
+    4 & R3 & Có tiến trình RIP và đủ route LAN 10/20/30 & PASS \\
+    5 & PC\_A & Ping được bốn gateway & PASS \\
+    6 & PC\_B & Ping được gateway B và A & PASS \\
+    7 & PC\_C & Ping được gateway C và A & PASS \\
+    8 & PC\_D & Ping được gateway D và A & PASS \\
+    9 & DHCP & PC\_A nhận IP trong dải 192.168.10.10--100 & PASS \\
     \bottomrule
   \end{tabularx}
 \end{table}
